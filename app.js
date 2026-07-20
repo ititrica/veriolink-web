@@ -2,6 +2,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const iconLibrary = window.lucide;
   if (iconLibrary) iconLibrary.createIcons();
 
+  const initBrandAssets = () => {
+    const segments = window.location.pathname.split('/').filter(Boolean);
+    const pageDepth = segments.length && segments[segments.length - 1].includes('.') ? segments.length - 1 : segments.length;
+    const prefix = '../'.repeat(pageDepth);
+    const logoPath = `${prefix}assets/brand/veriolink-logo.webp`;
+    const faviconPath = `${prefix}assets/brand/veriolink-favicon.webp`;
+
+    document.querySelectorAll('.brand-mark').forEach((mark) => {
+      const logo = document.createElement('img');
+      logo.className = 'brand-mark brand-logo';
+      logo.src = logoPath;
+      logo.alt = 'VerioLink logo';
+      mark.replaceWith(logo);
+    });
+
+    if (!document.querySelector('link[data-veriolink-favicon]')) {
+      const favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      favicon.type = 'image/webp';
+      favicon.sizes = '512x512';
+      favicon.href = faviconPath;
+      favicon.dataset.veriolinkFavicon = 'true';
+      document.head.appendChild(favicon);
+    }
+  };
+
+  initBrandAssets();
+
   const initThreads = () => {
     const canvas = document.querySelector('.threads-canvas');
     if (!canvas) return;

@@ -45,6 +45,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .brand-mark { width: 28px; height: 28px; display: grid; grid-template-columns: 1fr 1fr; background: var(--ink); color: var(--lime); font-family: var(--display); font-size: 11px; font-weight: 700; line-height: 1; transform: skew(-9deg); overflow: hidden; }
 .brand-mark span { display: grid; place-items: center; transform: skew(9deg); }
 .brand-mark span + span { color: var(--ink); background: var(--lime); }
+.brand-mark.brand-logo { width: 32px; height: 32px; display: block; background: transparent; transform: none; overflow: visible; object-fit: contain; }
 .brand-name { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: 0; }
 .main-nav { display: flex; align-items: center; gap: 34px; margin-left: auto; margin-right: 32px; }
 .main-nav a, .footer-links a, .footer-bottom a { color: var(--muted-ink); font-size: 14px; font-weight: 700; transition: color 180ms ease; }
