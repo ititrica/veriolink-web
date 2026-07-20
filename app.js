@@ -183,10 +183,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initLinkCoreMedia();
 
-  const initJapaneseBenefits = () => {
-    if (document.documentElement.lang !== 'ja') return;
+  const initBenefits = () => {
+    const isJapanese = document.documentElement.lang === 'ja';
     const signalGrid = document.querySelector('.signal-grid');
     if (!signalGrid) return;
+    if (!isJapanese) {
+      signalGrid.innerHTML = `
+        <div class="signal-item"><i data-lucide="shield-check" aria-hidden="true"></i><span><strong>One-year product warranty</strong><small>We cover product defects for one year from the purchase date.</small></span></div>
+        <div class="signal-item"><i data-lucide="store" aria-hidden="true"></i><span><strong>Available on Amazon.co.jp</strong><small>Shop with confidence online whenever you need to.</small></span></div>
+        <div class="signal-item"><i data-lucide="message-circle" aria-hidden="true"></i><span><strong>Japanese-language support</strong><small>Questions about product use and specifications are welcome.</small></span></div>
+        <div class="signal-item"><i data-lucide="clipboard-check" aria-hidden="true"></i><span><strong>Quality checked</strong><small>We review every product with usability and stability in mind.</small></span></div>`;
+      if (iconLibrary) iconLibrary.createIcons();
+      return;
+    }
     signalGrid.innerHTML = `
       <div class="signal-item"><i data-lucide="shield-check" aria-hidden="true"></i><span><strong>1年間の製品保証</strong><small>ご購入日から1年間、製品の不具合に対応します。</small></span></div>
       <div class="signal-item"><i data-lucide="store" aria-hidden="true"></i><span><strong>Amazon.co.jpで販売</strong><small>オンラインでいつでも安心してご購入いただけます。</small></span></div>
@@ -195,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (iconLibrary) iconLibrary.createIcons();
   };
 
-  initJapaneseBenefits();
+  initBenefits();
 
   const header = document.querySelector('[data-header]');
   const menuToggle = document.querySelector('.menu-toggle');
