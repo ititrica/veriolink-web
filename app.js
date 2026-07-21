@@ -335,7 +335,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const assetRoot = isJapanese
       ? (isFiberLinePage ? '../../assets/products/fiberline-02' : '../assets/products/fiberline-02')
       : (isFiberLinePage ? '../assets/products/fiberline-02' : 'assets/products/fiberline-02');
-    const cover = `${assetRoot}/cover/ChatGPT Image 2026年6月8日 14_14_41.webp`;
+    const cover = isFiberLinePage
+      ? `${assetRoot}/cover/ChatGPT Image 2026年6月8日 14_14_41.webp`
+      : `${assetRoot}/cover/ChatGPT Image 2026年7月21日 13_53_52.webp`;
     const details = [
       ['ChatGPT Image 2026年6月10日 14_11_59.webp', isJapanese ? 'ノートPC、タブレット、高出力デバイスの急速充電に対応。' : 'Built to charge laptops, tablets, and high-power setups.', 'wide', '1448 / 1086'],
       ['ChatGPT Image 2026年6月10日 14_02_59.webp', isJapanese ? '堅牢で放熱性に優れたコネクターシールドのクローズアップ。' : 'A close-up of the robust, heat-conscious connector shield.', 'tall', '1122 / 1402'],
@@ -369,6 +371,60 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initFiberLineMedia();
+
+  const initNetLinkMedia = () => {
+    const isNetLinkPage = /usb-c-ethernet-adapter\.html$/i.test(window.location.pathname);
+    const isJapanese = document.documentElement.lang === 'ja';
+    const assetRoot = isJapanese
+      ? (isNetLinkPage ? '../../assets/products/netlink-03' : '../assets/products/netlink-03')
+      : (isNetLinkPage ? '../assets/products/netlink-03' : 'assets/products/netlink-03');
+    const cover = `${assetRoot}/cover/ChatGPT Image 2026年7月21日 19_26_07.webp`;
+
+    if (isNetLinkPage) {
+      const detailArt = document.querySelector('.detail-art');
+      if (detailArt) {
+        detailArt.outerHTML = `<figure class="detail-image reveal reveal-delay"><img src="${cover}" alt="${isJapanese ? 'NetLink 03 USB-C Ethernet アダプター' : 'NetLink 03 USB-C Ethernet Adapter'}" /><figcaption>${isJapanese ? 'ギガビット速度対応、安定した有線接続。' : 'Gigabit speed ready, stable wired connection.'}</figcaption></figure>`;
+      }
+    }
+
+    const isHomepage = !isNetLinkPage && !/products\//i.test(window.location.pathname);
+    if (isHomepage) {
+      const productArt = document.querySelector('.product-card[data-category="network"] .product-art');
+      if (productArt) {
+        productArt.classList.add('product-art-image');
+        productArt.innerHTML = `<img src="${cover}" alt="${isJapanese ? 'NetLink 03 USB-C Ethernet アダプター' : 'NetLink 03 USB-C Ethernet Adapter'}" /><span class="art-tag">${isJapanese ? '仕事の必需品' : 'Work essential'}</span><div class="art-label">1 GIGABIT <b>ethernet</b></div>`;
+      }
+    }
+  };
+
+  initNetLinkMedia();
+
+  const initBridgeMedia = () => {
+    const isBridgePage = /usb-a-to-usb-c-adapter\.html$/i.test(window.location.pathname);
+    const isJapanese = document.documentElement.lang === 'ja';
+    const assetRoot = isJapanese
+      ? (isBridgePage ? '../../assets/products/bridge-04' : '../assets/products/bridge-04')
+      : (isBridgePage ? '../assets/products/bridge-04' : 'assets/products/bridge-04');
+    const cover = `${assetRoot}/cover/ChatGPT Image 2026年7月21日 19_26_04.webp`;
+
+    if (isBridgePage) {
+      const detailArt = document.querySelector('.detail-art');
+      if (detailArt) {
+        detailArt.outerHTML = `<figure class="detail-image reveal reveal-delay"><img src="${cover}" alt="${isJapanese ? 'Bridge 04 USB-A to USB-C アダプター' : 'Bridge 04 USB-A to USB-C Adapter'}" /><figcaption>${isJapanese ? 'コンパクト設計、データ・電力転送。' : 'Compact design, data and power transfer.'}</figcaption></figure>`;
+      }
+    }
+
+    const isHomepage = !isBridgePage && !/products\//i.test(window.location.pathname);
+    if (isHomepage) {
+      const productArt = document.querySelector('.product-card .product-art.art-bridge');
+      if (productArt) {
+        productArt.classList.add('product-art-image');
+        productArt.innerHTML = `<img src="${cover}" alt="${isJapanese ? 'Bridge 04 USB-A to USB-C アダプター' : 'Bridge 04 USB-A to USB-C Adapter'}" /><span class="art-tag">${isJapanese ? '新製品' : 'New'}</span><div class="art-label">USB-A <b>to</b> USB-C</div>`;
+      }
+    }
+  };
+
+  initBridgeMedia();
 
   const initBenefits = () => {
     const isJapanese = document.documentElement.lang === 'ja';
