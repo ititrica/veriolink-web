@@ -277,12 +277,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const intro = document.querySelector('.product-detail-intro');
       if (intro) intro.textContent = isJapanese
-        ? 'LinkCore 01は、HDMI映像をUSB-Cディスプレイへ届けるコンパクトなブリッジ。アルミニウム合金ボディ、PD 100W給電、3.5mmオーディオに対応し、デスクからリビングまで活躍します。'
-        : 'LinkCore 01 is a compact bridge from HDMI video to a USB-C display. Its aluminium alloy body, PD 100W pass-through and 3.5mm audio support make it ready for desks, meeting rooms and the living room.';
+        ? 'USB-C HDMI変換、タイプC HDMI変換に対応する3-in-1アダプター。LinkCore 01は4K30Hz・1080P120Hzの映像、拡張表示、PD100W給電、3.5mmイヤホンジャックをまとめてサポートします。'
+        : 'A 3-in-1 HDMI to USB-C adapter for 4K30Hz and 1080P120Hz video, extended display, PD 100W pass-through and 3.5mm audio in one compact bridge.';
 
       const featureCopy = isJapanese
-        ? [['4K映像出力', '最大4K / 30Hzのディスプレイ出力で、会議資料や映像を大画面に。'], ['アルミ合金ボディ', '放熱性と耐久性を考えた金属ボディに、透明保護キャップを組み合わせています。'], ['PD 100W給電', '画面を映しながら、対応機器へ最大100WのPower Delivery。'], ['プラグ＆プレイ', 'ドライバー不要。接続するだけでミラーリングや拡張表示を始められます。']]
-        : [['4K display output', 'Up to 4K / 30Hz output for presentations, films and a larger everyday workspace.'], ['Aluminium alloy body', 'A durable, heat-conscious metal housing paired with a transparent protective cap.'], ['PD 100W pass-through', 'Keep a compatible device powered while sending the display signal.'], ['Plug and play', 'No driver setup shown. Connect, choose mirror or extend, and get started.']];
+        ? [['4K30Hz・1080P120Hz映像', '4K30Hzと1080P120Hzに対応し、会議資料や映像を大画面へ出力します。'], ['3-in-1変換', 'USB-C HDMI変換、拡張表示、映像・給電・音声を一つにまとめた設計です。'], ['PD100W給電・音声', '画面を映しながら、対応機器へ最大100WのPower Deliveryと3.5mm音声を利用できます。'], ['プラグ＆プレイ', 'ドライバー不要。接続するだけでミラーリングや拡張表示を始められます。']]
+        : [['4K30Hz and 1080P120Hz output', 'Send presentations, films and a larger workspace to compatible displays.'], ['3-in-1 connection', 'Bring video, extended display, power and audio support into one compact adapter.'], ['PD 100W and audio', 'Keep a compatible device powered while using the 3.5mm audio connection.'], ['Plug and play', 'No driver setup shown. Connect, choose mirror or extend, and get started.']];
       document.querySelectorAll('.feature-item').forEach((item, index) => {
         if (!featureCopy[index]) return;
         const heading = item.querySelector('h3');
@@ -303,8 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const specRows = isJapanese
-        ? [['映像入力', 'HDMI'], ['ディスプレイ出力', 'USB-Cディスプレイ接続、最大4K / 30Hz'], ['給電', 'PDパススルー、最大100W'], ['オーディオ', '3.5mmオーディオジャック対応'], ['モード', 'ミラーリング / 拡張表示'], ['セットアップ', 'ドライバー不要のプラグ＆プレイ']]
-        : [['Video input', 'HDMI'], ['Display output', 'USB-C display connection, up to 4K / 30Hz'], ['Power delivery', 'PD pass-through up to 100W'], ['Audio', '3.5mm audio jack support'], ['Modes', 'Mirror and extended display modes'], ['Setup', 'Plug and play, no driver installation shown']];
+        ? [['映像入力', 'HDMI'], ['ディスプレイ出力', 'USB-Cディスプレイ接続、4K30Hz / 1080P120Hz'], ['給電', 'PDパススルー、最大100W'], ['オーディオ', '3.5mmイヤホンジャック対応'], ['モード', 'ミラーリング / 拡張表示'], ['変換設計', '3-in-1 USB-C HDMI変換アダプター'], ['セットアップ', 'ドライバー不要のプラグ＆プレイ']]
+        : [['Video input', 'HDMI'], ['Display output', 'USB-C display connection, 4K30Hz / 1080P120Hz'], ['Power delivery', 'PD pass-through up to 100W'], ['Audio', '3.5mm audio jack support'], ['Modes', 'Mirror and extended display modes'], ['Connection design', '3-in-1 HDMI to USB-C adapter'], ['Setup', 'Plug and play, no driver installation shown']];
       document.querySelectorAll('.spec-table tbody tr').forEach((row, index) => {
         if (!specRows[index]) return;
         const cells = row.querySelectorAll('th, td');
@@ -359,6 +359,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!document.querySelector('.product-image-story')) {
         document.querySelector('.product-info-section')?.insertAdjacentHTML('afterend', galleryMarkup);
       }
+
+      const featureCopy = isJapanese
+        ? [['240W急速充電', '対応する充電器とデバイスで最大240WのPower Deliveryに対応します。'], ['90°L字型・E-Marker', '端子まわりをすっきり保ち、E-Markerで対応機器への給電を確認できます。'], ['480Mbpsデータ転送', '充電だけでなく、日常のUSB-Cデータ転送にも使える一本です。'], ['360°回転スタンド', '折りたたみ式の亜鉛合金スマホスタンドとして、見やすい角度に調整できます。']]
+        : [['240W fast charging', 'Supports up to 240W Power Delivery with a compatible charger and device.'], ['90-degree L-shape and E-Marker', 'Keeps the connector area tidy and identifies supported power delivery.'], ['480Mbps data transfer', 'Built for charging and everyday USB-C data transfer from one dependable cable.'], ['360-degree rotating stand', 'Folds into a zinc alloy phone stand and adjusts to a comfortable viewing angle.']];
+      document.querySelectorAll('.feature-item').forEach((item, index) => {
+        if (!featureCopy[index]) return;
+        const heading = item.querySelector('h3');
+        const paragraph = item.querySelector('p');
+        if (heading) heading.textContent = featureCopy[index][0];
+        if (paragraph) paragraph.textContent = featureCopy[index][1];
+      });
+
+      const specRows = isJapanese
+        ? [['コネクター', 'USB-C オス to USB-C オス'], ['給電', '240W PD対応'], ['データ転送', '480Mbps'], ['形状・認証', '90°L字型 / E-Marker搭載'], ['スタンド', '360°回転・折りたたみ式亜鉛合金スマホスタンド']]
+        : [['Connectors', 'USB-C male to USB-C male'], ['Power delivery', 'Up to 240W PD with compatible equipment'], ['Data transfer', '480Mbps'], ['Design and marker', '90-degree L-shape / E-Marker'], ['Stand', 'Foldable 360-degree rotating zinc alloy phone stand']];
+      document.querySelectorAll('.spec-table tbody tr').forEach((row, index) => {
+        if (!specRows[index]) return;
+        const cells = row.querySelectorAll('th, td');
+        if (cells[0]) cells[0].textContent = specRows[index][0];
+        if (cells[1]) cells[1].textContent = specRows[index][1];
+      });
     }
 
     if (!isFiberLinePage) {
@@ -371,6 +392,47 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initFiberLineMedia();
+
+  const initProductSeo = () => {
+    const path = window.location.pathname.toLowerCase();
+    const isJapanese = document.documentElement.lang === 'ja';
+    const product = path.includes('hdmi-to-usbc-adapter')
+      ? {
+          name: isJapanese ? 'USB-C HDMI 変換アダプター 3-in-1' : 'HDMI to USB-C 3-in-1 Adapter',
+          alternateName: 'LinkCore 01',
+          description: isJapanese ? '4K30Hz・1080P120Hz、拡張表示、PD100W急速充電、3.5mmイヤホンジャックに対応する3-in-1変換アダプター。' : 'A 3-in-1 HDMI to USB-C adapter with 4K30Hz and 1080P120Hz display output, extended display, PD 100W charging and 3.5mm audio.',
+          category: isJapanese ? 'HDMI変換アダプター' : 'HDMI to USB-C adapter',
+          image: 'https://veriolink.com/assets/products/linkcore-01/cover/ChatGPT%20Image%202026%E5%B9%B47%E6%9C%8821%E6%97%A5%2011_28_46.webp'
+        }
+      : path.includes('usb-c-to-usb-c-cable')
+        ? {
+            name: isJapanese ? 'タイプC充電ケーブル 240W' : 'USB-C to USB-C 240W Charging Cable',
+            alternateName: 'FiberLine 02',
+            description: isJapanese ? 'スタンド付き、240W急速充電、PD対応、90°L字型、E-Marker搭載、480Mbpsデータ転送、360°回転・折りたたみ式亜鉛合金スマホスタンド、高耐久ナイロン編み。' : 'A USB-C charging cable with 240W PD, 90-degree L-shape, E-Marker, 480Mbps data transfer and a foldable rotating zinc alloy phone stand.',
+            category: isJapanese ? 'USB-C充電ケーブル' : 'USB-C charging cable',
+            image: 'https://veriolink.com/assets/products/fiberline-02/cover/ChatGPT%20Image%202026%E5%B9%B46%E6%9C%888%E6%97%A5%2014_14_41.webp'
+          }
+        : null;
+    if (!product || [...document.querySelectorAll('script[type="application/ld+json"]')].some((script) => /"@type"\s*:\s*"Product"/.test(script.textContent))) return;
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      '@id': `${window.location.origin}${window.location.pathname}#product`,
+      name: product.name,
+      alternateName: product.alternateName,
+      brand: { '@type': 'Brand', name: isJapanese ? 'べリオリンク' : 'VerioLink', alternateName: 'VerioLink' },
+      description: product.description,
+      category: product.category,
+      url: `${window.location.origin}${window.location.pathname}`,
+      image: product.image
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  };
+
+  initProductSeo();
 
   const initNetLinkMedia = () => {
     const isNetLinkPage = /usb-c-ethernet-adapter(\.html)?$/i.test(window.location.pathname);
