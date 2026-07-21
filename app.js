@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const assetRoot = isJapanese
       ? (isLinkCorePage ? '../../assets/products/linkcore-01' : '../assets/products/linkcore-01')
       : (isLinkCorePage ? '../assets/products/linkcore-01' : 'assets/products/linkcore-01');
-    const cover = `${assetRoot}/cover/05_architectural_platform_white_c6daf2.webp`;
+    const cover = `${assetRoot}/cover/ChatGPT Image 2026年7月21日 11_28_46.webp`;
     const details = [
       ['04_lifestyle_workspace_white_c6daf2.webp', isJapanese ? 'ノートPCとディスプレイをつなぐ、静かなワークスペース。' : 'A quiet workspace companion for laptop-to-display connections.', 'wide'],
       ['67f81004-e6bc-4bf8-8058-032efb505b57.webp', isJapanese ? '会議室でも、接続してすぐに使えるプラグ＆プレイ。' : 'Plug-and-play setup for presentations and shared screens.', 'tall'],
@@ -241,11 +241,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    if (isJapanese && !isFiberLinePage) {
+    if (!isFiberLinePage) {
       const productArt = document.querySelector('.product-card .product-art.art-cable');
       if (productArt) {
         productArt.classList.add('product-art-image');
-        productArt.innerHTML = `<img src="${cover}" alt="FiberLine 02 USB-C to USB-C ケーブル" /><span class="art-tag">新製品</span><div class="art-label">240W <b>power</b></div>`;
+        productArt.innerHTML = `<img src="${cover}" alt="${isJapanese ? 'FiberLine 02 USB-C to USB-C ケーブル' : 'FiberLine 02 USB-C to USB-C Cable'}" /><span class="art-tag">${isJapanese ? '新製品' : 'New'}</span><div class="art-label">240W <b>power</b></div>`;
       }
     }
   };
