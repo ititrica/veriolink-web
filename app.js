@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDotField();
 
   const initLinkCoreMedia = () => {
-    const isLinkCorePage = /hdmi-to-usbc-adapter\.html$/i.test(window.location.pathname);
+    const isLinkCorePage = /hdmi-to-usbc-adapter(\.html)?$/i.test(window.location.pathname);
     const isJapanese = document.documentElement.lang === 'ja';
     const assetRoot = isJapanese
       ? (isLinkCorePage ? '../../assets/products/linkcore-01' : '../assets/products/linkcore-01')
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLinkCoreMedia();
 
   const initFiberLineMedia = () => {
-    const isFiberLinePage = /usb-c-to-usb-c-cable\.html$/i.test(window.location.pathname);
+    const isFiberLinePage = /usb-c-to-usb-c-cable(\.html)?$/i.test(window.location.pathname);
     const isJapanese = document.documentElement.lang === 'ja';
     const assetRoot = isJapanese
       ? (isFiberLinePage ? '../../assets/products/fiberline-02' : '../assets/products/fiberline-02')
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFiberLineMedia();
 
   const initNetLinkMedia = () => {
-    const isNetLinkPage = /usb-c-ethernet-adapter\.html$/i.test(window.location.pathname);
+    const isNetLinkPage = /usb-c-ethernet-adapter(\.html)?$/i.test(window.location.pathname);
     const isJapanese = document.documentElement.lang === 'ja';
     const assetRoot = isJapanese
       ? (isNetLinkPage ? '../../assets/products/netlink-03' : '../assets/products/netlink-03')
@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNetLinkMedia();
 
   const initBridgeMedia = () => {
-    const isBridgePage = /usb-a-to-usb-c-adapter\.html$/i.test(window.location.pathname);
+    const isBridgePage = /usb-a-to-usb-c-adapter(\.html)?$/i.test(window.location.pathname);
     const isJapanese = document.documentElement.lang === 'ja';
     const assetRoot = isJapanese
       ? (isBridgePage ? '../../assets/products/bridge-04' : '../assets/products/bridge-04')
