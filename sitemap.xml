@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage English -->
+  <url>
+    <loc>https://veriolink.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veriolink.com/" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Homepage Japanese -->
+  <url>
+    <loc>https://veriolink.com/jp/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veriolink.com/" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Product 1: HDMI to USB-C Adapter -->
+  <url>
+    <loc>https://veriolink.com/products/hdmi-to-usbc-adapter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/products/hdmi-to-usbc-adapter" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/products/hdmi-to-usbc-adapter" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://veriolink.com/jp/products/hdmi-to-usbc-adapter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/products/hdmi-to-usbc-adapter" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/products/hdmi-to-usbc-adapter" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Product 2: USB-C to USB-C Cable -->
+  <url>
+    <loc>https://veriolink.com/products/usb-c-to-usb-c-cable</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/products/usb-c-to-usb-c-cable" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/products/usb-c-to-usb-c-cable" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://veriolink.com/jp/products/usb-c-to-usb-c-cable</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/products/usb-c-to-usb-c-cable" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/products/usb-c-to-usb-c-cable" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Product 3: USB-C Ethernet Adapter -->
+  <url>
+    <loc>https://veriolink.com/products/usb-c-ethernet-adapter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/products/usb-c-ethernet-adapter" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/products/usb-c-ethernet-adapter" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://veriolink.com/jp/products/usb-c-ethernet-adapter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/products/usb-c-ethernet-adapter" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/products/usb-c-ethernet-adapter" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Product 4: USB-A to USB-C Adapter -->
+  <url>
+    <loc>https://veriolink.com/products/usb-a-to-usb-c-adapter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/products/usb-a-to-usb-c-adapter" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/products/usb-a-to-usb-c-adapter" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://veriolink.com/jp/products/usb-a-to-usb-c-adapter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veriolink.com/products/usb-a-to-usb-c-adapter" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://veriolink.com/jp/products/usb-a-to-usb-c-adapter" />
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
