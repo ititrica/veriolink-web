@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initBrandAssets();
 
-  const initThreads = () => {
+  const initDotField = () => {
     const canvas = document.querySelector('.threads-canvas');
     if (!canvas) return;
     const section = canvas.closest('.hero');
@@ -38,19 +38,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!context || !section) return;
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const palette = [
-      'rgba(12, 14, 18, 0.12)',
-      'rgba(49, 87, 255, 0.15)',
-      'rgba(255, 115, 95, 0.11)',
-      'rgba(12, 14, 18, 0.08)'
-    ];
-    const pointer = { x: 0.55, y: 0.46 };
-    const target = { ...pointer };
+    
+    // DotField configuration adapted to brand colors (blue to coral)
+    const config = {
+      dotRadius: 1.5,
+      dotSpacing: 16,
+      cursorRadius: 280,
+      cursorForce: 0.1,
+      bulgeOnly: true,
+      bulgeStrength: 35,
+      sparkle: true,
+      waveAmplitude: 0.5,
+      gradientFrom: "rgba(49, 87, 255, 0.32)",
+      gradientTo: "rgba(255, 115, 95, 0.22)"
+    };
+
     let width = 0;
     let height = 0;
     let deviceScale = 1;
-    let time = 0;
-    let frameId;
+    let dots = [];
+    let animationFrameId;
+    let frameCount = 0;
+
+    // Mouse state
+    const mouse = {
+      x: -9999,
+      y: -9999,
+      prevX: -9999,
+      prevY: -9999,
+      speed: 0,
+      opacity: 0,
+      targetOpacity: 0
+    };
 
     const resize = () => {
       const bounds = section.getBoundingClientRect();
@@ -60,73 +79,170 @@ document.addEventListener('DOMContentLoaded', () => {
       canvas.width = Math.floor(width * deviceScale);
       canvas.height = Math.floor(height * deviceScale);
       context.setTransform(deviceScale, 0, 0, deviceScale, 0, 0);
+      
+      initGrid();
     };
 
-    const drawThreads = () => {
+    const initGrid = () => {
+      const spacing = config.dotRadius + config.dotSpacing;
+      const cols = Math.floor(width / spacing);
+      const rows = Math.floor(height / spacing);
+      const startX = (width % spacing) / 2;
+      const startY = (height % spacing) / 2;
+      
+      const grid = new Array(rows * cols);
+      let idx = 0;
+      
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const x = startX + c * spacing + spacing / 2;
+          const y = startY + r * spacing + spacing / 2;
+          grid[idx++] = {
+            ax: x, ay: y, // anchor coordinates
+            sx: x, sy: y, // current coordinates
+            vx: 0, vy: 0, // velocity
+            x: x, y: y    // render coordinates
+          };
+        }
+      }
+      dots = grid;
+    };
+
+    const updateMouseSpeed = () => {
+      const dx = mouse.prevX - mouse.x;
+      const dy = mouse.prevY - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      mouse.speed += (dist - mouse.speed) * 0.5;
+      if (mouse.speed < 0.001) mouse.speed = 0;
+      
+      mouse.prevX = mouse.x;
+      mouse.prevY = mouse.y;
+    };
+
+    const speedInterval = setInterval(updateMouseSpeed, 20);
+
+    const onMouseMove = (event) => {
+      const bounds = section.getBoundingClientRect();
+      mouse.x = event.clientX - bounds.left;
+      mouse.y = event.clientY - bounds.top;
+      
+      if (mouse.prevX === -9999) {
+        mouse.prevX = mouse.x;
+        mouse.prevY = mouse.y;
+      }
+    };
+
+    const onMouseLeave = () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+      mouse.prevX = -9999;
+      mouse.prevY = -9999;
+      mouse.speed = 0;
+    };
+
+    const draw = () => {
+      frameCount++;
+      
+      const mouseSpeedLimit = Math.min(mouse.speed / 5, 1);
+      mouse.targetOpacity = mouse.x === -9999 ? 0 : mouseSpeedLimit;
+      mouse.opacity += (mouse.targetOpacity - mouse.opacity) * 0.06;
+      if (mouse.opacity < 0.001) mouse.opacity = 0;
+
       context.clearRect(0, 0, width, height);
-      pointer.x += (target.x - pointer.x) * 0.045;
-      pointer.y += (target.y - pointer.y) * 0.045;
-      const lineCount = window.innerWidth < 700 ? 14 : 24;
 
-      for (let index = 0; index < lineCount; index += 1) {
-        const progress = index / (lineCount - 1);
-        const origin = width * (-0.12 + progress * 1.24);
-        const amplitude = 16 + progress * 22;
-        const speed = 0.48 + progress * 0.16;
-        context.beginPath();
+      // Create linear gradient for dots
+      const gradient = context.createLinearGradient(0, 0, width, height);
+      gradient.addColorStop(0, config.gradientFrom);
+      gradient.addColorStop(1, config.gradientTo);
+      context.fillStyle = gradient;
 
-        for (let step = 0; step <= 58; step += 1) {
-          const vertical = step / 58;
-          const wave = Math.sin(vertical * 5.2 + time * speed + index * 0.42) * amplitude;
-          const secondaryWave = Math.sin(vertical * 11.5 - time * 0.18 + index) * 5;
-          const pointerPull = Math.exp(-Math.pow((vertical - pointer.y) * 3.1, 2)) * (pointer.x - 0.5) * 76;
-          const x = origin + wave + secondaryWave + pointerPull;
-          const y = vertical * height;
-          if (step === 0) context.moveTo(x, y);
-          else context.lineTo(x, y);
+      const cursorRadiusSq = config.cursorRadius * config.cursorRadius;
+      const radiusHalf = config.dotRadius / 2;
+      
+      context.beginPath();
+      
+      const len = dots.length;
+      for (let i = 0; i < len; i++) {
+        const dot = dots[i];
+        
+        if (mouse.x !== -9999) {
+          const dx = mouse.x - dot.ax;
+          const dy = mouse.y - dot.ay;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < cursorRadiusSq) {
+            const dist = Math.sqrt(distSq);
+            if (config.bulgeOnly) {
+              const pct = 1 - dist / config.cursorRadius;
+              const force = pct * pct * config.bulgeStrength * (0.3 + mouse.opacity * 0.7);
+              const angle = Math.atan2(dy, dx);
+              dot.sx += (dot.ax - Math.cos(angle) * force - dot.sx) * 0.15;
+              dot.sy += (dot.ay - Math.sin(angle) * force - dot.sy) * 0.15;
+            } else {
+              const angle = Math.atan2(dy, dx);
+              const force = (500 / dist) * (mouse.speed * config.cursorForce);
+              dot.vx += Math.cos(angle) * -force;
+              dot.vy += Math.sin(angle) * -force;
+            }
+          } else {
+            dot.sx += (dot.ax - dot.sx) * 0.1;
+            dot.sy += (dot.ay - dot.sy) * 0.1;
+          }
+        } else {
+          dot.sx += (dot.ax - dot.sx) * 0.1;
+          dot.sy += (dot.ay - dot.sy) * 0.1;
         }
 
-        context.strokeStyle = palette[index % palette.length];
-        context.lineWidth = index % 6 === 0 ? 1.5 : 0.85;
-        context.shadowColor = index % 6 === 0 ? palette[index % palette.length] : 'transparent';
-        context.shadowBlur = index % 6 === 0 ? 6 : 0;
-        context.stroke();
-      }
-      context.shadowBlur = 0;
-    };
+        if (!config.bulgeOnly) {
+          dot.vx *= 0.9;
+          dot.vy *= 0.9;
+          dot.x = dot.ax + dot.vx;
+          dot.y = dot.ay + dot.vy;
+          dot.sx += (dot.x - dot.sx) * 0.1;
+          dot.sy += (dot.y - dot.sy) * 0.1;
+        }
 
-    const render = () => {
-      drawThreads();
+        let renderX = dot.sx;
+        let renderY = dot.sy;
+
+        if (config.waveAmplitude > 0) {
+          renderY += Math.sin(dot.ax * 0.03 + frameCount * 0.02) * config.waveAmplitude;
+          renderX += Math.cos(dot.ay * 0.03 + frameCount * 0.02 * 0.7) * config.waveAmplitude * 0.5;
+        }
+
+        // Draw circles
+        if (config.sparkle && ((i * 2654435761 ^ frameCount >> 3) >>> 0) % 100 < 1.5) {
+          context.moveTo(renderX + radiusHalf * 1.8, renderY);
+          context.arc(renderX, renderY, radiusHalf * 1.8, 0, Math.PI * 2);
+        } else {
+          context.moveTo(renderX + radiusHalf, renderY);
+          context.arc(renderX, renderY, radiusHalf, 0, Math.PI * 2);
+        }
+      }
+      
+      context.fill();
+      
       if (!reducedMotion.matches && !document.hidden) {
-        time += 0.012;
-        frameId = window.requestAnimationFrame(render);
+        animationFrameId = window.requestAnimationFrame(draw);
       }
-    };
-
-    const movePointer = (event) => {
-      const bounds = section.getBoundingClientRect();
-      target.x = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
-      target.y = Math.min(1, Math.max(0, (event.clientY - bounds.top) / bounds.height));
     };
 
     resize();
-    section.addEventListener('pointermove', movePointer, { passive: true });
-    section.addEventListener('pointerleave', () => {
-      target.x = 0.55;
-      target.y = 0.46;
-    }, { passive: true });
+    section.addEventListener('mousemove', onMouseMove, { passive: true });
+    section.addEventListener('mouseleave', onMouseLeave, { passive: true });
     window.addEventListener('resize', resize, { passive: true });
-    render();
+    
+    animationFrameId = window.requestAnimationFrame(draw);
 
     if (reducedMotion.addEventListener) {
       reducedMotion.addEventListener('change', () => {
-        window.cancelAnimationFrame(frameId);
-        render();
+        window.cancelAnimationFrame(animationFrameId);
+        draw();
       });
     }
   };
 
-  initThreads();
+  initDotField();
 
   const initLinkCoreMedia = () => {
     const isLinkCorePage = /hdmi-to-usbc-adapter\.html$/i.test(window.location.pathname);
