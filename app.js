@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // DotField configuration adapted to brand colors (blue to coral)
     const config = {
-      dotRadius: 1.5,
+      dotRadius: 3.0,
       dotSpacing: 16,
       cursorRadius: 280,
       cursorForce: 0.1,
