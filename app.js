@@ -219,17 +219,17 @@ document.addEventListener('DOMContentLoaded', () => {
       : (isFiberLinePage ? '../assets/products/fiberline-02' : 'assets/products/fiberline-02');
     const cover = `${assetRoot}/cover/ChatGPT Image 2026年6月8日 14_14_41.webp`;
     const details = [
-      ['ChatGPT Image 2026年6月10日 14_11_59.webp', isJapanese ? 'ノートPC、タブレット、高出力デバイスの急速充電に対応。' : 'Built to charge laptops, tablets, and high-power setups.', 'wide'],
-      ['ChatGPT Image 2026年6月10日 14_02_59.webp', isJapanese ? '堅牢で放熱性に優れたコネクターシールドのクローズアップ。' : 'A close-up of the robust, heat-conscious connector shield.', 'tall'],
-      ['A+ .1.手机.webp', isJapanese ? '外出先でもスマートフォンの急速充電をサポート。' : 'Supports high-speed charging for mobile devices on the go.', 'half'],
-      ['Gemini_Generated_Image_rx4detrx4detrx4d.webp', isJapanese ? '毎日の使いやすさを考えた、しなやかなナイロン編み込み。' : 'Flexible braided texture designed for everyday flexibility.', 'half'],
-      ['Gemini_Generated_Image_vt4i4cvt4i4cvt4i.webp', isJapanese ? '繰り返しの曲げや引っ張りに耐える耐久テスト済み。' : 'Tested to withstand repeated bends, twists, and pulls.', 'half'],
-      ['ChatGPT Image 2026年6月9日 15_58_14.webp', isJapanese ? '現代のデスクハブや充電スタンドにすっきり収まります。' : 'Fits cleanly into modern desk hubs and charging setups.', 'half'],
-      ['ChatGPT Image 2026年6月10日 14_16_55.webp', isJapanese ? '整理しやすく、いつでも使える毎日の接続ブリッジ。' : 'Your daily connection bridge, organized and ready for work.', 'wide']
+      ['ChatGPT Image 2026年6月10日 14_11_59.webp', isJapanese ? 'ノートPC、タブレット、高出力デバイスの急速充電に対応。' : 'Built to charge laptops, tablets, and high-power setups.', 'wide', '1448 / 1086'],
+      ['ChatGPT Image 2026年6月10日 14_02_59.webp', isJapanese ? '堅牢で放熱性に優れたコネクターシールドのクローズアップ。' : 'A close-up of the robust, heat-conscious connector shield.', 'tall', '1122 / 1402'],
+      ['A+ .1.手机.webp', isJapanese ? '外出先でもスマートフォンの急速充電をサポート。' : 'Supports high-speed charging for mobile devices on the go.', 'half', '1068 / 801'],
+      ['Gemini_Generated_Image_rx4detrx4detrx4d.webp', isJapanese ? '毎日の使いやすさを考えた、しなやかなナイロン編み込み。' : 'Flexible braided texture designed for everyday flexibility.', 'half', '1 / 1'],
+      ['Gemini_Generated_Image_vt4i4cvt4i4cvt4i.webp', isJapanese ? '繰り返しの曲げや引っ張りに耐える耐久テスト済み。' : 'Tested to withstand repeated bends, twists, and pulls.', 'half', '1 / 1'],
+      ['ChatGPT Image 2026年6月9日 15_58_14.webp', isJapanese ? '現代のデスクハブや充電スタンドにすっきり収まります。' : 'Fits cleanly into modern desk hubs and charging setups.', 'half', '1 / 1'],
+      ['ChatGPT Image 2026年6月10日 14_26_07.webp', isJapanese ? '高負荷デバイスやセットアップ向けに検証された安定した電力供給。' : 'Stable power delivery verified for high-demand devices and setups.', 'wide', '1448 / 1086']
     ];
 
-    const imageMarkup = (file, alt, className, lazy = true) => `<figure class="gallery-item gallery-item--${className}"><img src="${assetRoot}/details/${file}" alt="${alt}"${lazy ? ' loading="lazy"' : ''} /><figcaption>${alt}</figcaption></figure>`;
-    const galleryMarkup = `<section class="product-image-story"><div class="container"><div class="product-image-story-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>${isJapanese ? '使用イメージ' : 'See it in use'}</p><h2>${isJapanese ? '毎日の充電を、<br /><em>写真で見る。</em>' : 'Designed around<br /><em>the everyday.</em>'}</h2></div><p class="section-description">${isJapanese ? 'デスク、モバイル、高出力充電など、さまざまな日常の場面で活躍するケーブルの写真です。' : 'The product images show a flexible 100W charging cable built for everyday speed, power delivery, and tidy setups.'}</p></div><div class="product-gallery">${details.map(([file, caption, size]) => imageMarkup(file, caption, size)).join('')}</div></div></section>`;
+    const imageMarkup = (file, alt, className, aspect, lazy = true) => `<figure class="gallery-item gallery-item--${className}"><img src="${assetRoot}/details/${file}" alt="${alt}" style="aspect-ratio: ${aspect}; object-fit: cover;"${lazy ? ' loading="lazy"' : ''} /><figcaption>${alt}</figcaption></figure>`;
+    const galleryMarkup = `<section class="product-image-story"><div class="container"><div class="product-image-story-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>${isJapanese ? '使用イメージ' : 'See it in use'}</p><h2>${isJapanese ? '毎日の充電を、<br /><em>写真で見る。</em>' : 'Designed around<br /><em>the everyday.</em>'}</h2></div><p class="section-description">${isJapanese ? 'デスク、モバイル、高出力充電など、さまざまな日常の場面で活躍するケーブルの写真です。' : 'The product images show a flexible 100W charging cable built for everyday speed, power delivery, and tidy setups.'}</p></div><div class="product-gallery">${details.map(([file, caption, size, aspect]) => imageMarkup(file, caption, size, aspect)).join('')}</div></div></section>`;
 
     if (isFiberLinePage) {
       const detailArt = document.querySelector('.detail-art');
