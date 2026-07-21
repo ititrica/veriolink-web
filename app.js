@@ -229,12 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const imageMarkup = (file, alt, className, aspect, lazy = true) => `<figure class="gallery-item gallery-item--${className}"><img src="${assetRoot}/details/${file}" alt="${alt}" style="aspect-ratio: ${aspect}; object-fit: cover;"${lazy ? ' loading="lazy"' : ''} /><figcaption>${alt}</figcaption></figure>`;
-    const galleryMarkup = `<section class="product-image-story"><div class="container"><div class="product-image-story-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>${isJapanese ? '使用イメージ' : 'See it in use'}</p><h2>${isJapanese ? '毎日の充電を、<br /><em>写真で見る。</em>' : 'Designed around<br /><em>the everyday.</em>'}</h2></div><p class="section-description">${isJapanese ? 'デスク、モバイル、高出力充電など、さまざまな日常の場面で活躍するケーブルの写真です。' : 'The product images show a flexible 100W charging cable built for everyday speed, power delivery, and tidy setups.'}</p></div><div class="product-gallery">${details.map(([file, caption, size, aspect]) => imageMarkup(file, caption, size, aspect)).join('')}</div></div></section>`;
+    const galleryMarkup = `<section class="product-image-story"><div class="container"><div class="product-image-story-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span>${isJapanese ? '使用イメージ' : 'See it in use'}</p><h2>${isJapanese ? '毎日の充電を、<br /><em>写真で見る。</em>' : 'Designed around<br /><em>the everyday.</em>'}</h2></div><p class="section-description">${isJapanese ? 'デスク、モバイル、高出力充電など、さまざまな日常の場面で活躍するケーブルの写真です。' : 'The product images show a flexible 240W charging cable built for everyday speed, power delivery, and tidy setups.'}</p></div><div class="product-gallery">${details.map(([file, caption, size, aspect]) => imageMarkup(file, caption, size, aspect)).join('')}</div></div></section>`;
 
     if (isFiberLinePage) {
       const detailArt = document.querySelector('.detail-art');
       if (detailArt) {
-        detailArt.outerHTML = `<figure class="detail-image reveal reveal-delay"><img src="${cover}" alt="${isJapanese ? 'しなやかなナイロン編み込みのFiberLine 02 USB-C to USB-C ケーブル' : 'FiberLine 02 USB-C to USB-C Cable with flexible braided nylon body'}" /><figcaption>${isJapanese ? '高耐久ナイロン編み込み、100W PD対応。' : 'Durable braided nylon weave, 100W PD ready.'}</figcaption></figure>`;
+        detailArt.outerHTML = `<figure class="detail-image reveal reveal-delay"><img src="${cover}" alt="${isJapanese ? 'しなやかなナイロン編み込みのFiberLine 02 USB-C to USB-C ケーブル' : 'FiberLine 02 USB-C to USB-C Cable with flexible braided nylon body'}" /><figcaption>${isJapanese ? '高耐久ナイロン編み込み、240W PD対応。' : 'Durable braided nylon weave, 240W PD ready.'}</figcaption></figure>`;
       }
       if (!document.querySelector('.product-image-story')) {
         document.querySelector('.product-info-section')?.insertAdjacentHTML('afterend', galleryMarkup);
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const productArt = document.querySelector('.product-card .product-art.art-cable');
       if (productArt) {
         productArt.classList.add('product-art-image');
-        productArt.innerHTML = `<img src="${cover}" alt="FiberLine 02 USB-C to USB-C ケーブル" /><span class="art-tag">新製品</span><div class="art-label">100W <b>power</b></div>`;
+        productArt.innerHTML = `<img src="${cover}" alt="FiberLine 02 USB-C to USB-C ケーブル" /><span class="art-tag">新製品</span><div class="art-label">240W <b>power</b></div>`;
       }
     }
   };
