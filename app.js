@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const segments = window.location.pathname.split('/').filter(Boolean);
     const pageDepth = segments.length && segments[segments.length - 1].includes('.') ? segments.length - 1 : segments.length;
     const prefix = '../'.repeat(pageDepth);
-    const logoPath = `${prefix}assets/brand/veriolink-logo.webp`;
+    const logoPath = `${prefix}assets/brand/veriolink-logo-64.webp`;
     const faviconPath = `${prefix}assets/brand/veriolink-favicon.webp`;
 
     document.querySelectorAll('.brand-mark').forEach((mark) => {
@@ -316,13 +316,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isJapanese && !isLinkCorePage) {
       const heroVisual = document.querySelector('.hero-visual');
       if (heroVisual) {
-        heroVisual.innerHTML = `<div class="hero-product-photo"><img src="${cover}" alt="アルミニウムボディと透明キャップを備えたLinkCore 01 HDMI to USB-Cアダプター" /></div><div class="hero-note note-top"><span class="note-dot"></span> 4K映像出力</div><div class="hero-note note-bottom"><span class="note-dot accent"></span> PD 100W対応</div><div class="stage-caption"><span>LINKCORE 01</span><i data-lucide="arrow-right" aria-hidden="true"></i><span>HDMI / USB-C</span></div>`;
+        heroVisual.innerHTML = `<div class="hero-product-photo"><img src="${cover}" srcset="${cover.replace('.webp', '-hero.webp')} 840w, ${cover} 1448w" sizes="(max-width: 700px) 100vw, 55vw" width="840" height="630" fetchpriority="high" alt="アルミニウムボディと透明キャップを備えたLinkCore 01 HDMI to USB-Cアダプター" /></div><div class="hero-note note-top"><span class="note-dot"></span> 4K映像出力</div><div class="hero-note note-bottom"><span class="note-dot accent"></span> PD 100W対応</div><div class="stage-caption"><span>LINKCORE 01</span><i data-lucide="arrow-right" aria-hidden="true"></i><span>HDMI / USB-C</span></div>`;
         if (iconLibrary) iconLibrary.createIcons();
       }
       const productArt = document.querySelector('.product-card[data-category="video"] .product-art');
       if (productArt) {
         productArt.classList.add('product-art-image');
-        productArt.innerHTML = `<img src="${cover}" alt="LinkCore 01 HDMI to USB-Cアダプター" /><span class="art-tag">定番</span><div class="art-label">HDMI <b>to</b> USB-C</div>`;
+        const card = cover.replace('.webp', '-card.webp');
+        productArt.innerHTML = `<img src="${card}" srcset="${card} 662w, ${cover} 1448w" sizes="(max-width: 700px) 100vw, 25vw" width="662" height="662" loading="lazy" alt="LinkCore 01 HDMI to USB-Cアダプター" /><span class="art-tag">定番</span><div class="art-label">HDMI <b>to</b> USB-C</div>`;
       }
     }
   };
@@ -386,7 +387,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const productArt = document.querySelector('.product-card .product-art.art-cable');
       if (productArt) {
         productArt.classList.add('product-art-image');
-        productArt.innerHTML = `<img src="${cover}" alt="${isJapanese ? 'FiberLine 02 USB-C to USB-C ケーブル' : 'FiberLine 02 USB-C to USB-C Cable'}" /><span class="art-tag">${isJapanese ? '新製品' : 'New'}</span><div class="art-label">240W <b>power</b></div>`;
+        const card = cover.replace('.webp', '-card.webp');
+        productArt.innerHTML = `<img src="${card}" srcset="${card} 662w, ${cover} 1254w" sizes="(max-width: 700px) 100vw, 25vw" width="662" height="662" loading="lazy" alt="${isJapanese ? 'FiberLine 02 USB-C to USB-C ケーブル' : 'FiberLine 02 USB-C to USB-C Cable'}" /><span class="art-tag">${isJapanese ? '新製品' : 'New'}</span><div class="art-label">240W <b>power</b></div>`;
       }
     }
   };
@@ -454,7 +456,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const productArt = document.querySelector('.product-card[data-category="network"] .product-art');
       if (productArt) {
         productArt.classList.add('product-art-image');
-        productArt.innerHTML = `<img src="${cover}" alt="${isJapanese ? 'NetLink 03 USB-C Ethernet アダプター' : 'NetLink 03 USB-C Ethernet Adapter'}" /><span class="art-tag">${isJapanese ? '仕事の必需品' : 'Work essential'}</span><div class="art-label">1 GIGABIT <b>ethernet</b></div>`;
+        const card = cover.replace('.webp', '-card.webp');
+        productArt.innerHTML = `<img src="${card}" srcset="${card} 662w, ${cover} 1254w" sizes="(max-width: 700px) 100vw, 25vw" width="662" height="662" loading="lazy" alt="${isJapanese ? 'NetLink 03 USB-C Ethernet アダプター' : 'NetLink 03 USB-C Ethernet Adapter'}" /><span class="art-tag">${isJapanese ? '仕事の必需品' : 'Work essential'}</span><div class="art-label">1 GIGABIT <b>ethernet</b></div>`;
       }
     }
   };
@@ -481,7 +484,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const productArt = document.querySelector('.product-card .product-art.art-bridge');
       if (productArt) {
         productArt.classList.add('product-art-image');
-        productArt.innerHTML = `<img src="${cover}" alt="${isJapanese ? 'Bridge 04 USB-A to USB-C アダプター' : 'Bridge 04 USB-A to USB-C Adapter'}" /><span class="art-tag">${isJapanese ? '新製品' : 'New'}</span><div class="art-label">USB-A <b>to</b> USB-C</div>`;
+        const card = cover.replace('.webp', '-card.webp');
+        productArt.innerHTML = `<img src="${card}" srcset="${card} 662w, ${cover} 1254w" sizes="(max-width: 700px) 100vw, 25vw" width="662" height="662" loading="lazy" alt="${isJapanese ? 'Bridge 04 USB-A to USB-C アダプター' : 'Bridge 04 USB-A to USB-C Adapter'}" /><span class="art-tag">${isJapanese ? '新製品' : 'New'}</span><div class="art-label">USB-A <b>to</b> USB-C</div>`;
       }
     }
   };
@@ -552,6 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const setSearchState = (open) => {
     searchPanel.classList.toggle('is-open', open);
     searchPanel.setAttribute('aria-hidden', String(!open));
+    searchPanel.toggleAttribute('inert', !open);
     if (open) window.setTimeout(() => searchInput.focus(), 120);
   };
   searchToggle?.addEventListener('click', () => setSearchState(!searchPanel.classList.contains('is-open')));

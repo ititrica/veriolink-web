@@ -11,8 +11,8 @@
   --coral: #ff735f;
   --teal: #bde8de;
   --serif: Georgia, 'Times New Roman', serif;
-  --sans: 'Nunito Sans', Arial, sans-serif;
-  --display: Rubik, Arial, sans-serif;
+  --sans: Arial, 'Helvetica Neue', sans-serif;
+  --display: 'Arial Narrow', Arial, sans-serif;
   --radius: 8px;
   --shadow-soft: 0 20px 55px rgba(12, 14, 18, 0.09);
   --shadow-card: 0 10px 26px rgba(12, 14, 18, 0.08);
